@@ -2,16 +2,19 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>demodocker4</groupId>
-  <artifactId>demodocker4</artifactId>
+  <groupId>test</groupId>
+  <artifactId>dockerdemo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>demodocker4</name>
-  <url>http://maven.apache.org</url>
+  <name>dockerdemo</name>
+  <description>A maven plugin for docker</description>
+  <url>https://github.com/spotify/docker-maven-plugin</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -21,5 +24,38 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <version>3.1.1</version>
+	</dependency>
+	<dependency>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>1.2.1</version>
+	</dependency>
   </dependencies>
+   
+  <build>
+  <plugins>
+  <plugin>
+    <groupId>com.spotify</groupId>
+    <artifactId>docker-maven-plugin</artifactId>
+     <version>1.1.1</version>
+      <configuration>
+        <imageName>raghutestdocker</imageName>
+        <baseImage>java</baseImage>
+        <entryPoint>["java", "-cp", "/${project.build.finalName}.jar","demodocker4.App"]</entryPoint>
+        <!-- copy the service's jar file from target into the root directory of the image --> 
+        <resources>
+           <resource>
+             <targetPath>/</targetPath>
+             <directory>${project.build.directory}</directory>
+             <include>${project.build.finalName}.jar</include>
+           </resource>
+        </resources>
+      </configuration>
+    </plugin>
+  </plugins>
+  </build>
 </project>
