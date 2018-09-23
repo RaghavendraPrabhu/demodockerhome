@@ -43,7 +43,8 @@
     <artifactId>docker-maven-plugin</artifactId>
      <version>1.0.0</version>
       <configuration>
-        <imageName>ganpatibappa</imageName>
+        <imageName>ganpatibappa</imageName> 
+		<dockerCertPath>C:\Users\Pushpa\.docker\machine\machines\default</dockerCertPath>
         <dockerHost>https://192.168.99.100:2376</dockerHost>
         <baseImage>java</baseImage>
         <entryPoint>["java", "-cp", "/${project.build.finalName}.jar","demodocker4.App"]</entryPoint>
