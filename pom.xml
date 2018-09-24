@@ -43,7 +43,7 @@
     <artifactId>docker-maven-plugin</artifactId>
      <version>1.0.0</version>
       <configuration>
-        <imageName>demo1</imageName> 
+        <imageName>demo2</imageName> 
 		<dockerCertPath>C:\Users\Pushpa\.docker\machine\machines\default</dockerCertPath>
         <dockerHost>https://192.168.99.100:2376</dockerHost>
         <baseImage>java</baseImage>
